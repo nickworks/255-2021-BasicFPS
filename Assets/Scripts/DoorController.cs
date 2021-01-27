@@ -44,16 +44,17 @@ public class DoorController : MonoBehaviour
 
             doorArt.localRotation = Quaternion.Euler(0, doorAngle * percent, 0); // set angle of doorArt
         }
-
     }
 
     public void PlayerInteract(Vector3 position) {
 
-        if (animIsPlaying) return; // do nothing...
+        if (animIsPlaying == true) return; // do nothing...
 
+        if (Inventory.main.hasKey == false) return; // do nothing...
 
         Vector3 disToPlayer = position - transform.position;
         disToPlayer = disToPlayer.normalized;
+
         bool playerOnOtherSide = (Vector3.Dot(disToPlayer, transform.forward) > 0f);
 
         isClosed = !isClosed; // toggles state

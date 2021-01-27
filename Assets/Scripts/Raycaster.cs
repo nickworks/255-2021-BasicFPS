@@ -17,6 +17,7 @@ public class Raycaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // did the user click on this game tick?
         if (cam != null && Input.GetButtonDown("Fire1")) {
 
@@ -32,10 +33,10 @@ public class Raycaster : MonoBehaviour
                 // raycast hit a collider in the scene!
 
                 DoorController door = hit.transform.GetComponentInParent<DoorController>();
-                if(door != null) {
+                if(door != null) door.PlayerInteract(transform.parent.position);
 
-                    door.PlayerInteract(transform.parent.position);
-                }
+                ItemPickup pickup = hit.transform.GetComponent<ItemPickup>();
+                if (pickup != null) pickup.PlayerInteract();
                 
             }
         }
